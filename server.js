@@ -1,6 +1,9 @@
 import express from 'express';
 import mongoose from "mongoose";
-
+import cookieParser  from 'cookie-parser';
+import session from 'express-session';
+import flush from 'connect-flash';
+import errorHandler from "./middlewares/errorHandler";
 import path from "path";
 var bodyParser = require('body-parser');
 import { APP_PORT ,DB_URL} from "./config";
@@ -19,6 +22,17 @@ db.once('open', () => {
 global.appRoot = path.resolve(__dirname);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use('/admin', routes);
+app.use(express.static(__dirname + '/public'));
+app.set("view engine","ejs");
 
+app.use(session({
+   secret:'secret',
+   cookie:{maxAge:60000},
+   resave:false,
+   saveUninitialized:false
+}));
+app.use(flush);
+app.use('/admin', routes);
+app.use(errorHandler);
+app.use(cookieParser());
 app.listen(APP_PORT, () => console.log(`listening on porting ${APP_PORT}`))

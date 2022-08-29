@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="apple-touch-icon" sizes="76x76" href="/admin/img/apple-icon.png">
+   <link rel="icon" type="image/png" href="admin/uploads/favicon.png'">
+   <title>
+      HostEasy
+   </title>
+   <meta name="csrf-token" content="{{ csrf_token() }}" />
+   
+   
+<%- include('./style.ejs') %>
+
+
+
+   <style>
+      .float-right {
+         float: right;
+      }
+
+      .text-green {
+         color: green;
+      }
+
+      .text-red {
+         color: red;
+      }
+
+      .text-white {
+         color: red;
+      }
+
+      .objectfit-cover {
+         object-fit: cover;
+      }
+
+      .pagination {
+         float: right;
+      }
+
+      .display-none {
+         display: none;
+      }
+
+      .width-max {
+         width: max-content;
+         ;
+      }
+
+      table.dataTable.no-footer {
+         border-bottom: 1px solid #e9ecef !important;
+      }
+
+      .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
+         background-image: linear-gradient(310deg, #ff5c39 0%, #ff5c39 100%);
+         color: white;
+      }
+
+      .bg-gradient-primary {
+         background-image: linear-gradient(310deg, #ff5c39 0%, #ff5c39 100%);
+      }
+
+      .btn-primary {
+         background-color: #ff5c39;
+      }
+
+      .btn-primary:hover,
+      .btn.bg-gradient-primary:hover {
+         background-color: #ff5c39;
+      }
+
+      .page-item.active .page-link {
+         background-color: #ff5c39;
+         border-color: #ff5c39;
+      }
+
+      div.dataTables_wrapper div.dataTables_info {
+         font-size: .75rem;
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+         color: white !important;
+         border: 0px solid #ffff !important;
+         box-shadow: none;
+         background: white !important;
+      }
+
+      .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+         background: white !important;
+         box-shadow: none;
+      }
+
+      .page-item:not(:first-child) .page-link {
+         margin-left: -24px;
+      }
+
+      .badge-dark:hover,
+      .badge-dark:focus {
+         color: white !important;
+      }
+
+      .fiterDiv {
+         border: 0.5px solid lightgray;
+         padding: 10px;
+         border-radius: 10px;
+         margin-bottom: 15px;
+         /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
+      }
+
+      .footer-fix {
+         position: absolute;
+         bottom: 0;
+         width: 100%;
+         left: 0;
+      }
+
+      .lodar-modal1 {
+      position: fixed;
+      background: rgb(0 0 0 / 70%);
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      text-align: center;
+      z-index: 9999;
+    }
+   </style>
+
+   
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+
+   
+  <div class="lodar-modal1" id="preloader_front" style="display:block">
+   <div class="">
+     <img style="margin-top: 200px;" src="{{asset('assets/admin/img/Spinner.svg')}}" alt="" />
+   </div>
+ </div>
+
+
+<div class="header">
+    <nav class="navbar py-4">
+        <div class="container-xxl">
+            <!-- header rightbar icon -->
+            <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
+                <div class="dropdown zindex-popover">
+                </div>
+                <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                    <div class="u-info me-2">
+                        <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Admin</span></p>
+                    </div>
+                    <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
+                        <img class="avatar lg rounded-circle img-thumbnail" src="{{asset('assets/admin/images/profile_av.svg')}}" alt="profile">
+                    </a>
+                    <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
+                        <div class="card border-0 w280">
+                            <div class="card-body pb-0">
+                                <div class="d-flex py-1">
+                                    <img class="avatar rounded-circle" src="{{asset('assets/admin/images/profile_av.svg')}}" alt="profile">
+                                    <div class="flex-fill ms-3">
+                                        <p class="mb-0"><span class="font-weight-bold">Admin</span></p>
+                                        <small class="">admin@gmail.com</small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <hr class="dropdown-divider border-dark">
+                                </div>
+                            </div>
+                            <div class="list-group m-2 ">
+                                <a href="/admin/logout" onclick="return confirm('Are you sure you want to logout?');" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-5 me-3"></i>Signout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting ms-2">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#Settingmodal"><i class="icofont-gear-alt fs-5"></i></a>
+                </div>
+            </div>
+            <!-- menu toggler -->
+            <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainHeader">
+                <span class="fa fa-bars"></span>
+            </button>
+            <!-- main menu Search-->
+            <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
+                <div class="input-group flex-nowrap input-group-lg">
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,271 @@
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
+    id="sidenav-main">
+    <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+            aria-hidden="true" id="iconSidenav"></i>
+        <a href="{{ route('admin.dashboard') }}" class="navbar-brand text-center m-0" href="#!">
+            <img src="{{ asset('public/logo/logo.webp') }}" class="navbar-brand-img h-100" alt="main_logo">
+        </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto h-auto h-100" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('host') }}"
+                    class="nav-link {{ request()->routeIs('host') || request()->routeIs('host-edit') || request()->routeIs('host-view') ? 'active' : '' }}">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Host</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#pagesExamples"
+                    class="nav-link {{ request()->routeIs('host-hand') || request()->routeIs('host-hand-edit') || request()->routeIs('host-hand-view') || request()->routeIs('host-hand-requests') ? 'active' : '' }}"
+                    aria-controls="pagesExamples" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Host-Hand</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('host-hand') || request()->routeIs('host-hand-edit') || request()->routeIs('host-hand-view') || request()->routeIs('host-hand-requests') ? 'show' : '' }}"
+                    id="pagesExamples">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('host-hand') || request()->routeIs('host-hand-edit') || request()->routeIs('host-hand-view') ? 'active' : '' }}"
+                                href="{{ route('host-hand') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> List </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('host-hand-requests') ? 'active' : '' }}"
+                                href="{{ route('host-hand-requests') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> Approval Requests </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#events"
+                    class="nav-link {{ request()->routeIs('admin.events.upcommint_events') || request()->routeIs('admin.events.complete_events_show') || request()->routeIs('admin.events.complete_events') || request()->routeIs('admin.events.upcommint_events_show') ? 'active' : '' }}"
+                    aria-controls="events" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Event</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('admin.events.upcommint_events') || request()->routeIs('admin.events.complete_events') ? 'show' : '' }}"
+                    id="events">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('admin.events.upcommint_events') ? 'active' : '' }}"
+                                href="{{ route('admin.events.upcommint_events') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> Upcoming </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('admin.events.complete_events') ? 'active' : '' }}"
+                                href="{{ route('admin.events.complete_events') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> Complete </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#faq-add"
+                    class="nav-link {{ request()->routeIs('faq-add') || request()->routeIs('faq-edit') || request()->routeIs('faq-view') || request()->routeIs('faq-add') ? 'active' : '' }}"
+                    aria-controls="faq-add" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">FAQs</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('faqs') || request()->routeIs('faq-edit') || request()->routeIs('faq-view') || request()->routeIs('faq-add') ? 'show' : '' }}"
+                    id="faq-add">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('faq-add') || request()->routeIs('faq-edit') || request()->routeIs('faq-view') ? 'active' : '' }}"
+                                href="{{ route('faqs') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> List </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+      
+
+            <li class="nav-item">
+                <a href="{{ route('admin.notifications.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.notifications.index') ? 'active' : '' }}">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Notification</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href="{{ route('admin.support.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.support.index') ? 'active' : '' }}">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Support</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.contactus.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.contactus.index') ? 'active' : '' }}">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Contact Us</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#pages"
+                    class="nav-link {{ request()->routeIs('pages.index') || request()->routeIs('pages.edit') ? 'active' : '' }}"
+                    aria-controls="pages" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Pages</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('pages.index') || request()->routeIs('pages.edit') ? 'show' : '' }}"
+                    id="pages">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('pages.index') || request()->routeIs('pages.edit') ? 'active' : '' }}"
+                                href="{{ route('pages.index') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> List </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#settings"
+                    class="nav-link {{ request()->routeIs('admin.settings.index') || request()->routeIs('admin.settings.edit') || request()->routeIs('admin.password-change') ? 'active' : '' }}"
+                    aria-controls="settings" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Settings</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('admin.settings.index') || request()->routeIs('admin.settings.edit') ? 'show' : '' }}"
+                    id="settings">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"
+                                href="{{ route('admin.settings.index') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> Setting </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link {{ request()->routeIs('admin.password-change') ? 'active' : '' }}"
+                                href="{{ route('admin.password-change') }}">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="sidenav-normal"> Change Password </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#home"
+                    class="nav-link {{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.edit') || request()->routeIs('admin.categories.create') ? 'active' : '' }}"
+                    aria-controls="home" role="button" aria-expanded="false">
+                    <div
+                        class="icon icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Category</span>
+                </a>
+                <div class="collapse {{ request()->routeIs('admin.sliders.index') || request()->routeIs('admin.sliders.edit') || request()->routeIs('admin.sliders.create') || request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.edit') || request()->routeIs('admin.categories.create') ? 'show' : '' }}"
+                    id="home">
+                    <ul class="nav ms-4 ps-3">
+                        <li class="nav-item ">
+                            <a data-bs-toggle="collapse" href="#Category"
+                                class="nav-link {{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.edit') || request()->routeIs('admin.categories.create') ? 'active' : '' }}"
+                                aria-controls="home" role="button" aria-expanded="false">
+                                <span class="sidenav-mini-icon"> UL </span>
+                                <span class="nav-link-text ms-1">Category</span>
+                            </a>
+                            <div class="collapse {{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.edit') || request()->routeIs('admin.categories.create') ? 'show' : '' }}"
+                                id="Category">
+                                <ul class="nav ms-4 ps-3">
+                                    <li class="nav-item ">
+                                        <a class="nav-link {{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.edit') || request()->routeIs('faq-view') ? 'active' : '' }}"
+                                            href="{{ route('admin.categories.index') }}">
+                                            <span class="sidenav-mini-icon"> UL </span>
+                                            <span class="sidenav-normal"> List </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#sliders"
+                                class="nav-link {{ request()->routeIs('admin.sliders.index') || request()->routeIs('admin.sliders.edit') || request()->routeIs('admin.sliders.create') ? 'active' : '' }}"
+                                aria-controls="sliders" role="button" aria-expanded="false">
+
+                                <span class="nav-link-text ms-1">Slider</span>
+                            </a>
+                            <div class="collapse {{ request()->routeIs('admin.sliders.index') || request()->routeIs('admin.sliders.edit') || request()->routeIs('admin.sliders.create') ? 'show' : '' }}"
+                                id="sliders">
+                                <ul class="nav ms-4 ps-3">
+                                    <li class="nav-item ">
+                                        <a class="nav-link {{ request()->routeIs('admin.sliders.index') || request()->routeIs('admin.sliders.edit') || request()->routeIs('faq-view') ? 'active' : '' }}"
+                                            href="{{ route('admin.sliders.index') }}">
+                                            <span class="sidenav-mini-icon"> UL </span>
+                                            <span class="sidenav-normal"> List </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
