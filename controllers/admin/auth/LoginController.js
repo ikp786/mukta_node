@@ -13,10 +13,10 @@ const loginController = {
     },
 
 
-    async dashboard(req,res,next){    
-      // return res.json({res})
+    async dashboard(req,res,next){     
+  
       req.flash('message')
-      res.render('admin/dashboard',{message:"message" });
+      res.render('admin/dashboard',{message:"success login" });
   },
 
 
