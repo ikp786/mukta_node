@@ -2,11 +2,15 @@ import CustomErrorHandler from "../services/CustomErrirHandler";
 import JwtService from "../services/JwtService";
 
 const auth = async (req,res,next) => {
-    let authHeader = req.headers.authorization;    
-    if(!authHeader){
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    //let authHeader = req.headers.authorization;    
+    const {cookie} = req.headers;
+    if(!cookie){
         return next(CustomErrorHandler.unAuthorized())
     }
-    const token = authHeader.split(' ')[1];    
+    const token = cookie.split("admin_auth_token=")[1];
+    console.log(token)
+    res.json({token: authToken})
     try {
         const {_id,role} = await JwtService.verify(token);
         const user = {

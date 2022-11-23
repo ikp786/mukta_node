@@ -2,25 +2,49 @@ import CustomErrorHandler from "../services/CustomErrirHandler";
 import JwtService from "../services/JwtService";
 
 const adminAuth = async (req,res,next) => {
+    
+    //console.log("yyy",req.headers.cookie)
+    // return false;
   
-    const {cookies} = req;
-    const authHeader = cookies.admin_auth_token;
+    const {cookie} = req.headers;
+    console.log("dfsdfsddsfds")
+    
+    // console.log("token___token",cookie.split("admin_auth_token=")[1]);
 
-    if(!authHeader){
+    let authToken = cookie.split("admin_auth_token=")[1];
+    console.log("authToken", authToken);
+
+    authToken = authToken.split(" ")[0].replace(';', '');
+    
+    if(typeof authToken == 'undefined'){
+        return res.redirect('/admin/login');        
+    }
+    //const authHeader = cookie.admin_auth_token;
+
+    
+    if(!authToken){
         return res.redirect('/admin/login');
         // return next(CustomErrorHandler.unAuthorized())
     }    
-    const token = authHeader;
+    
+   
+    
     try {
-        const {_id,role} = await JwtService.verify(token);
+        console.log({t: authToken});
+        const {_id, role} = await JwtService.verify(authToken);
+        console.log({t: authToken});
         const user = {
             _id,
             role
         }
         req.user = user;
+        
+        
         next();
-    } catch (err) {        
+    } catch (err) {   
+        console.log("err", err)     
         // return next(CustomErrorHandler.unAuthorized())        
+        
         return res.redirect('/admin/login');
 
     }

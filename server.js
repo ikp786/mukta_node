@@ -31,8 +31,13 @@ app.use(session({
    resave:false,
    saveUninitialized:false
 }));
-app.use(flush);
+
+app.use(flush());
+
 app.use('/admin', routes);
+
+
+
 app.use(errorHandler);
 app.use(cookieParser());
 app.listen(APP_PORT, () => console.log(`listening on porting ${APP_PORT}`))

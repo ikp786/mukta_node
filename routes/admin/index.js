@@ -9,6 +9,6 @@ import auth from '../../middlewares/admin-auth';
 router.post('/register',RegisterController.register);
 router.get('/login',loginController.loginView);
 router.get('/logout',auth, loginController.logout);
-router.get('/dashboard',auth,loginController.dashboard);
+router.get('/dashboard', auth, loginController.dashboard);
 router.post('/login',loginController.login);
 export default router; 
