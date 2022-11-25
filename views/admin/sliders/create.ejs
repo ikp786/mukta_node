@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+            <!-- Navbar -->
+            <%- include('../partials/navbar') %>
+                <!-- End Navbar -->
+                <div class="container-fluid py-4">
+                    <style>
+                        body {
+                            height: 100vh;
+                        }
+                    </style>
+                    <div class="card-header">
+                        <h5>Sliders
+                            <a href="/admin/sliders/index" class="btn btn-sm btn-primary float-right">List</a>
+                        </h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form action="/admin/sliders/store" method="post" class="text-start" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label mt-4">Title</label>
+                                    <div class="input-group">
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label mt-4">Image</label>
+                                    <div class="input-group">
+                                        <input type="file" name="image" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button-row d-flex mt-4">
+                                <button class="btn btn-primary btn-sm ms-auto mb-0 js-btn-next" type="submit"
+                                    title="Save">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <%- include('../partials/footer') %>
+                </div>
+        </main>
+        <%- include('../partials/script') %>

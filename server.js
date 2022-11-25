@@ -6,10 +6,11 @@ import flush from 'connect-flash';
 import errorHandler from "./middlewares/errorHandler";
 import path from "path";
 var bodyParser = require('body-parser');
+import multer from "multer";
 import { APP_PORT ,DB_URL} from "./config";
 const app = express()
 import routes from './routes/admin';
-
+var upload = multer();
 // DATABASE CONNECTION
 mongoose.connect(DB_URL, {
    
@@ -23,6 +24,7 @@ global.appRoot = path.resolve(__dirname);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
+app.use("/uploads", express.static('uploads'));
 app.set("view engine","ejs");
 
 app.use(session({

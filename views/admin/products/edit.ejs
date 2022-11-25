@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+            <!-- Navbar -->
+            <%- include('../partials/navbar') %>
+                <!-- End Navbar -->
+                <div class="container-fluid py-4">
+                    <style>
+                        body {
+                            height: 100vh;
+                        }
+                    </style>
+                    <div class="card-header">
+                        <h5>Category
+                            <a href="/admin/categories/index" class="btn btn-sm btn-primary float-right">List</a>
+                        </h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="globe" class="position-absolute end-0 top-0 mt-sm-3 mt-7 me-lg-7">
+                                <canvas width="700" height="600"
+                                    class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form action="/admin/categories/update/<%= category._id %>" method="POST" class="text-start">
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label mt-4">Title</label>
+                                    <div class="input-group">
+                                        <input type="text" value="<%= category.title %>" name="title"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button-row d-flex mt-4">
+                                <button class="btn bg-gradient-dark btn-sm ms-auto mb-0 js-btn-next" type="submit"
+                                    title="Update">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <%- include('../partials/footer') %>
+                </div>
+        </main>
+        <%- include('../partials/script') %>

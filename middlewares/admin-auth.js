@@ -7,9 +7,12 @@ const adminAuth = async (req,res,next) => {
     // return false;
   
     const {cookie} = req.headers;
-    console.log("dfsdfsddsfds")
+    console.log("dfsdfsddsfds",cookie)
     
     // console.log("token___token",cookie.split("admin_auth_token=")[1]);
+    if(typeof cookie == 'undefined'){
+        return res.redirect('/admin/login');        
+    }
 
     let authToken = cookie.split("admin_auth_token=")[1];
     console.log("authToken", authToken);
