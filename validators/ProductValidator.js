@@ -1,7 +1,11 @@
 import Joi  from "joi";
 
-const SliderSchema = Joi.object({
-    title: Joi.string().required(),
+const ProductSchema = Joi.object({
+    name: Joi.string().required(),
+    category_id: Joi.string().required(),
+    price: Joi.number().required(),
+    discount_price: Joi.number().required(),
+    description: Joi.string().required(),
   });
 
-  export default SliderSchema;
+  export default ProductSchema;

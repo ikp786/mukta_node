@@ -1,9 +1,20 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 import { APP_URL } from '../config';
-const SliderSchema = new Schema(
+const ProductSchema = new Schema(
     {
-        title: { type: String, required: true },  
+        name: { type: String, required: true },         
+
+        category_id:{
+            type: mongoose.Schema.Types.ObjectId,
+            trim: true,
+            ref: 'Category',
+        
+        },
+        
+        price: { type: String, required: true },  
+        discount_price: { type: String, required: true },  
+        description: { type: String, required: true },  
         
         image:{type:String, required:true,
             get: (image) =>{        
@@ -14,4 +25,4 @@ const SliderSchema = new Schema(
     { timestamps: true, toJSON: { getters: true }, id: false }
 );
 
-export default mongoose.model('Slider', SliderSchema);
+export default mongoose.model('Product', ProductSchema);
