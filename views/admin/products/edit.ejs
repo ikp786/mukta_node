@@ -18,7 +18,8 @@
 
                     <div class="card-body pt-0">
                         <!-- <form method="post" action="" enctype="multipart/form-data"> -->
-                        <form action="/admin/products/update/<%= product._id %> " method="post" class="text-start" enctype="multipart/form-data">
+                        <form action="/admin/products/update/<%= product._id %> " method="post" class="text-start"
+                            enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-6">
                                     <label class="form-label mt-4">Name</label>
@@ -30,11 +31,13 @@
                                 <div class="col-6">
                                     <label class="form-label mt-4">Category</label>
                                     <div class="select-group">
-                                        <select name="category_id" class="form-control" d="<%= JSON.stringify(product) %>">
+                                        <select name="category_id" class="form-control">
                                             <option value="">Select Category</option>
-                                            <% categories.forEach(value=> { %>
-                                                <option value="<%= value._id %>" <%- value._id == product.category_id ? "selected" : '' %>  d="<%= product.category_id %>"   >
-                                                    <%= value.title %>
+                                         
+                                            <% categories.forEach((value, index)=> { %>
+    
+                                                <option value="<%= value._id %>" <%= String(product.category_id) === String(value._id) ? "selected": ""%>  d="<%= product.category_id %>" >
+                                                            <%= value.title %>
                                                 </option>
                                                 <% }) %>
                                         </select>

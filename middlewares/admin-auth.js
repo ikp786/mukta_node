@@ -16,7 +16,9 @@ const adminAuth = async (req,res,next) => {
 
     let authToken = cookie.split("admin_auth_token=")[1];
     console.log("authToken", authToken);
-
+    if(typeof authToken == 'undefined'){
+        return res.redirect('/admin/login');        
+    }
     authToken = authToken.split(" ")[0].replace(';', '');
     
     if(typeof authToken == 'undefined'){

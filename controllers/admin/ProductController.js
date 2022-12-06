@@ -4,7 +4,7 @@ import ProductSchema from "../../validators/ProductValidator";
 import multer from 'multer';
 import path from 'path';
 import fs from "fs";
-
+import mongoose from "mongoose";
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null,'uploads/products/'),
     filename: (req, file, cb) => {
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         cb(null,uniqueName);
     }
 });
-const handleMultipartdata = multer({storage, limits:{fileSize: 100000 * 5 }}).single('image') // 5mb
+const handleMultipartdata = multer({storage, limits:{fileSize: 100000 * 5 }}).array('image',5) // 5mb
 const ProductController = {
  // RETREVE DATA FROM DB
 async index(req,res,next){
@@ -20,6 +20,7 @@ async index(req,res,next){
   // pagination. mongoose-pagination
   try {      
        document = await Product.find().populate('category_id').select('-updatedAt -__v').sort({_id:-1});
+      // return res.json({document})
   } catch (err) {
       return next(CustomErrorHandler.serverError());
   }
@@ -44,16 +45,22 @@ async store(req,res,next){
     // multipart form data
     try {
     handleMultipartdata(req,res, async (err) => {   
-        let document;         
+
+        const filePath = req.files;
+      
+        let document;
         if(err){
+            console.log(filePath);
             return next(CustomErrorHandler.serverError(err.message))
-        }                      
-        const filePath = req.file.path;
-        //validatoin                          
+        }
+       
+        //return res.json({filePath})
+        //validatoin
         const { error } = ProductSchema.validate(req.body);
+        
         if(error){
-    if(req.file){
-            fs.unlink(`${appRoot}/${filePath}`, (err) => {      
+    if(req.files){
+            fs.unlink(`${appRoot}/${filePath}`, (err) => {
                 if(err){
             return next(CustomErrorHandler.serverError(err.message));
                 }
@@ -62,13 +69,14 @@ async store(req,res,next){
             return next(error);
         }
         const {name,category_id,description,price,discount_price} = req.body;
+        //return res.json(category_id,description,price,discount_price);
 const ProductData = new Product({
-    name,
-    category_id,
+    name,    
+    category_id:category_id.trim(),
     description,
     price,
     discount_price,
-...(req.file && {image:filePath})
+...(req.files && {image:filePath.map(v=>v.path)})
 });
         try {
             document = await ProductData.save();
