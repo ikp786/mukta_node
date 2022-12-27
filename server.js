@@ -37,6 +37,8 @@ app.use(session({
 app.use(flush());
 
 app.use('/admin', routes);
+app.use('/sliders', routes);
+
 
 
 
